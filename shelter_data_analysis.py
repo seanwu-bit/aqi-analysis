@@ -306,23 +306,27 @@ class ShelterDataAnalyzer:
             shelter_name = str(row['避難收容處所名稱'])
             indoor_flag = str(row['室內']).strip() if pd.notna(row['室內']) else ''
             
-            # 檢查關鍵字
-            is_indoor_type = any(keyword in shelter_name for keyword in self.indoor_keywords)
-            
-            if is_indoor_type:
-                if indoor_flag == '是':
+            # 優先使用原始 '室內' 欄位判斷
+            if indoor_flag == '是':
+                df.loc[idx, 'in_door'] = True
+                indoor_count += 1
+            elif indoor_flag == '否':
+                df.loc[idx, 'in_door'] = False
+                outdoor_count += 1
+            else:
+                # 如果原始欄位為空，則使用關鍵字判斷
+                is_indoor_type = any(keyword in shelter_name for keyword in self.indoor_keywords)
+                
+                if is_indoor_type:
                     df.loc[idx, 'in_door'] = True
                     indoor_count += 1
                 else:
-                    df.loc[idx, 'in_door'] = False
-                    outdoor_count += 1
-            else:
-                # 公園等戶外場所
-                if '公園' in shelter_name or '廣場' in shelter_name:
-                    if indoor_flag == '否':
+                    # 公園等戶外場所
+                    if '公園' in shelter_name or '廣場' in shelter_name:
                         df.loc[idx, 'in_door'] = False
                         outdoor_count += 1
                     else:
+                        # 預設為室內（較安全的假設）
                         df.loc[idx, 'in_door'] = True
                         indoor_count += 1
         

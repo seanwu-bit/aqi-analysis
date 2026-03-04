@@ -103,7 +103,15 @@ class ManualRiskAnalyzer:
         
         # 載入數據
         aqi_df = pd.read_csv('outputs/aqi_data_with_distance_20260224_164419.csv', encoding='utf-8-sig')
-        shelters_df = pd.read_csv('outputs/shelter_data_cleaned_20260303_210104.csv', encoding='utf-8-sig')
+        
+        # 找到最新的清理檔案
+        shelter_files = [f for f in os.listdir('outputs') if f.startswith('shelter_data_cleaned_') and f.endswith('.csv')]
+        if shelter_files:
+            latest_shelter_file = sorted(shelter_files)[-1]
+            shelters_df = pd.read_csv(f'outputs/{latest_shelter_file}', encoding='utf-8-sig')
+        else:
+            print("未找到清理後的避難所數據")
+            return
         
         print(f"載入 AQI 數據: {len(aqi_df)} 筆")
         print(f"載入避難所數據: {len(shelters_df)} 筆")
