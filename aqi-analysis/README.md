@@ -15,9 +15,35 @@ aqi-analysis/
 │   ├── shelter_aqi_analysis.csv     # 風險分析結果
 │   └── reflection.md                # 專案反思報告
 ├── scripts/
-│   └── shelter_aqi_analysis.py      # 主要分析腳本
+│   ├── shelter_data_analysis.py      # 避難所數據清理與分析
+│   ├── shelter_risk_analysis.py      # 風險標籤分析
+│   ├── spatial_overlay_analysis.py    # 空間疊圖分析
+│   ├── main.py                     # 主程式入口
+│   ├── aqi_map.py                 # AQI 地圖生成
+│   └── cwa_weather_map.py          # CWA 天氣地圖
 └── README.md                        # 專案說明文件
 ```
+
+### 目錄說明
+
+#### `/scripts` - 主要程式
+- **shelter_data_analysis.py**: 避難所數據清理、座標驗證、室內外屬性推斷
+- **shelter_risk_analysis.py**: 風險標籤作業、Haversine 距離計算、模擬功能
+- **spatial_overlay_analysis.py**: 空間疊圖分析、互動式地圖生成
+- **main.py**: 統一程式入口，整合 AQI 和 CWA 功能
+
+#### `/tests` - 測試與驗證（專案根目錄）
+- **quality_check.py**: 品質檢查腳本
+- **check_*.py**: 各項數據驗證腳本
+- **test_*.py**: 模擬測試腳本
+
+#### `/data` - 處理後數據
+- **shelters_cleaned.csv**: 清理後的避難所數據（5048 筆）
+
+#### `/outputs` - 分析結果
+- **audit_report.md**: 數據審核報告
+- **shelter_aqi_analysis.csv**: 風險分析結果
+- **reflection.md**: 專案反思與技術分析
 
 ## 主要功能
 
