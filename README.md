@@ -85,21 +85,28 @@
 ## 檔案結構
 
 ```
-aqi-analysis/
-├── data/
-│   └── shelters_cleaned.csv          # 清理後的避難所數據
+AQI_Map_Project/
+├── aqi-analysis/
+│   └── data/
+│       └── shelters_cleaned.csv          # 清理後的避難所數據
 ├── outputs/
 │   ├── audit_report.md               # 完整審核報告
+│   ├── reflection.md                # 專案反思報告
 │   ├── shelter_aqi_analysis.csv     # 風險分析結果
-│   └── reflection.md                # 專案反思報告
+│   ├── shelter_aqi_analysis_manual.csv # 手動模擬結果
+│   ├── shelter_data_cleaned.csv     # 清理後數據
+│   ├── aqi_data_with_distance.csv   # AQI 距離數據
+│   ├── aqi_map.html                # AQI 地圖
+│   └── spatial_overlay_map_20260303_210203.html # 空間疊圖
 ├── scripts/
 │   ├── shelter_data_analysis.py      # 避難所數據清理與分析
 │   ├── shelter_risk_analysis.py      # 風險標籤分析
 │   ├── spatial_overlay_analysis.py    # 空間疊圖分析
 │   ├── main.py                     # 主程式入口
-│   ├── aqi_map.py                 # AQI 地圖生成
-│   └── cwa_weather_map.py          # CWA 天氣地圖
-└── README.md                        # 專案說明文件
+│   └── shelter_aqi_analysis.py     # AQI 分析腳本
+├── tests/                          # 測試驗證檔案
+├── data/                           # 原始數據
+└── README.md                       # 專案說明文件
 ```
 
 ## 主要功能
